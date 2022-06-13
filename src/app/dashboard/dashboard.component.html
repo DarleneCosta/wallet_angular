@@ -1,1 +1,52 @@
-<p>dashboard works!</p>
+<div class="bg-gray-100">
+  <!-- <AppBar signOut={signOut} /> -->
+  <div class="lg:text-center bg-blue-500">
+    <div class="hidden md:block">
+      <hr class="mx-3" />
+      <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-white bg-blue-500 py-2">
+          Olá, Fulano
+          <!-- {balanceWallet && balanceWallet.user.name} -->
+        </dt>
+        <dd
+          class="bg-gray-100 py-2 px-3 text-sm text-gray-900 sm:col-span-2 rounded-md flex items-center justify-between"
+        >
+          <!-- <BalanceWallet
+								value={balanceWallet && balanceWallet.value}
+							/> -->
+        </dd>
+      </div>
+    </div>
+    <div class="md:hidden flex flex-col">
+      <h2 class="text-base text-white font-semibold tracking-wide px-5 pt-2">
+        Olá, Fuilano
+        <!-- {balanceWallet && balanceWallet.user.name} -->
+      </h2>
+      <div
+        class="py-3 px-10 bg-gray-100 dark:bg-gray-800 text-gray-600 border-blue-500 flex items-center justify-between mt-2"
+      >
+        <!-- <BalanceWallet
+							value={balanceWallet && balanceWallet.value}
+						/> -->
+      </div>
+    </div>
+  </div>
+  <div class="lg:text-center bg-blue-500 p-5">
+    <p
+      class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl"
+    >
+      Suas lojas favoritas
+    </p>
+  </div>
+  <div class="w-auto flex flex-col px-8 py-5 justify-center bg-gray-100">
+    <ul class="flex flex-col"></ul>
+  </div>
+  <!-- {stores && stores.length > 0 && (
+				<AddPreferences
+					class="fixed"
+					user={balanceWallet && balanceWallet.user.cpf}
+					setIdSelected={setIdSelectedReload}
+					stores={stores}
+				/>
+			)} -->
+</div>
