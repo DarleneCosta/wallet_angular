@@ -1,5 +1,7 @@
-import { RequestSignIn } from './../resoruces/models/RequestSignIn';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { RequestSignIn } from '../resources/models/sign-in/RequestSignIn';
+import { SignInService } from '../resources/services/sign-in/sign-in.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,13 +11,22 @@ import { Component, OnInit } from '@angular/core';
 export class SignInComponent implements OnInit {
   public requestSignIn!: RequestSignIn;
 
-  constructor() {}
+  constructor(private signInService: SignInService, private router: Router) {}
 
   ngOnInit(): void {
     this.requestSignIn = new RequestSignIn();
   }
 
   public doLogin(): void {
-    console.log(this.requestSignIn);
+    this.router.navigate(['dashboard']);
+
+    // this.signInService.doLogin(this.requestSignIn).subscribe(
+    //   (data) => {
+    //     this.router.navigate(['dashboard']);
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   }
+    // );
   }
 }
