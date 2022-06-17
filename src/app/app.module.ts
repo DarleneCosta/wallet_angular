@@ -12,6 +12,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AddPreferencesComponent } from './add-preferences/add-preferences.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
+import { StorePreferenceListComponent } from './store-preference-list/store-preference-list.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { TopBarComponent } from './top-bar/top-bar.component';
     SignUpComponent,
     AddPreferencesComponent,
     TopBarComponent,
+    StorePreferenceListComponent,
   ],
   imports: [
     BrowserModule,

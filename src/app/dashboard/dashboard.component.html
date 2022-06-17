@@ -1,4 +1,5 @@
 <div class="bg-gray-100">
+  <!-- <app-top-bar></app-top-bar> -->
   <!-- <AppBar signOut={signOut} /> -->
   <div class="lg:text-center bg-blue-500">
     <div class="hidden md:block">
@@ -38,15 +39,6 @@
       Suas lojas favoritas
     </p>
   </div>
-  <div class="w-auto flex flex-col px-8 py-5 justify-center bg-gray-100">
-    <ul class="flex flex-col"></ul>
-  </div>
-  <!-- {stores && stores.length > 0 && (
-				<AddPreferences
-					class="fixed"
-					user={balanceWallet && balanceWallet.user.cpf}
-					setIdSelected={setIdSelectedReload}
-					stores={stores}
-				/>
-			)} -->
+
+  <app-store-preference-list></app-store-preference-list>
 </div>
