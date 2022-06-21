@@ -8,7 +8,7 @@
     id="form"
     class="bg-gray-200 h-screen xl:w-2/4 flex justify-center items-center content-center"
   >
-    <div class="flex flex-col justify-center items-center space-y-16 w-full">
+    <div class="flex flex-col justify-center items-center space-y-12 w-full">
       <img
         class="w-40 h-40 mt-5 mb-5"
         src="../../assets/login.jpg"
@@ -33,6 +33,12 @@
           [(ngModel)]="requestSignIn.password"
         />
       </div>
+      <app-alert-label
+        *ngIf="!!msgError === true"
+        [title]="'Oops, não foi possível conectar'"
+        [subtitle]="msgError"
+      >
+      </app-alert-label>
 
       <button
         class="bg-blue-500 w-3/4 rounded-lg h-12 text-white font-bold text-xl"

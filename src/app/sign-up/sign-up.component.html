@@ -60,7 +60,12 @@
           placeholder="Senha"
         />
       </div>
-
+      <app-alert-label
+        *ngIf="!!msgError === true"
+        [title]="'Oops, não foi possível conectar'"
+        [subtitle]="msgError"
+      >
+      </app-alert-label>
       <button
         type="submit"
         class="bg-blue-500 w-3/4 mb-16 rounded-lg h-12 text-white font-bold text-xl xl:mb-0"

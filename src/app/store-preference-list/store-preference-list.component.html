@@ -1,8 +1,18 @@
 <div class="w-auto flex flex-col px-8 py-5 justify-center bg-gray-100">
   <ul class="flex flex-col">
-    <div class="w-auto flex flex-col px-8 py-5 justify-center bg-gray-100">
+    <app-alert-label
+      *ngIf="!storesPreference || storesPreference.length === 0"
+      [title]="alert.title"
+      [subtitle]="alert.subtitle"
+    >
+    </app-alert-label>
+
+    <div
+      *ngFor="let preference of storesPreference"
+      class="w-auto flex flex-col px-8 py-5 justify-center bg-gray-100"
+    >
       <ul class="flex flex-col">
-        <li key="{preference.id}" class="border-gray-400 flex flex-row mb-2">
+        <li class="border-gray-400 flex flex-row mb-2">
           <div
             class="shadow border select-none cursor-pointer bg-white dark:bg-gray-800 rounded-md flex flex-1 items-center p-5 px-12"
           >
@@ -11,19 +21,17 @@
             >
               <img
                 alt="profil"
-                src="{preference.urlLogo}"
+                src="preference.urlLogo"
                 class="mx-auto object-cover rounded-full h-10 w-10"
               />
             </div>
             <div class="flex-1 pl-6">
               <div class="font-medium dark:text-white">
-                <!-- {preference.name} -->
-                teste
+                {{ preference.name }}
               </div>
             </div>
             <div class="text-gray-600 dark:text-gray-200 text-md md:mr-20">
-              <!-- {preference.percent} % -->
-              5 %
+              {{ preference.percent }} %
             </div>
             <div class="w-24 text-right flex justify-end">
               <!-- <DialogRemove

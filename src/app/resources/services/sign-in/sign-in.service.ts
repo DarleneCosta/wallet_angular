@@ -11,7 +11,6 @@ import { ResponseSignIn } from './../../models/sign-in/ResponseSignIn';
 export class SignInService {
   constructor(private httpCliente: HttpClient) {}
   public doLogin(requestSignIn: RequestSignIn): Observable<ResponseSignIn> {
-    console.log(environment.apiUrl);
     return this.httpCliente.post<ResponseSignIn>(
       `${environment.apiUrl}/login`,
       requestSignIn

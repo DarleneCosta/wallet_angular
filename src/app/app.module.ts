@@ -13,6 +13,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { AddPreferencesComponent } from './add-preferences/add-preferences.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { StorePreferenceListComponent } from './store-preference-list/store-preference-list.component';
+import { AlertLabelComponent } from './alert-label/alert-label.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { StorePreferenceListComponent } from './store-preference-list/store-pref
     AddPreferencesComponent,
     TopBarComponent,
     StorePreferenceListComponent,
+    AlertLabelComponent,
   ],
   imports: [
     BrowserModule,

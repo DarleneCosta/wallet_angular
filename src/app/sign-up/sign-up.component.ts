@@ -25,6 +25,7 @@ export class SignUpComponent implements OnInit {
     celphone: 0,
     password: '',
   });
+  msgError: string = '';
   ngOnInit(): void {
     this.requestSignUp = new RequestSignUp();
   }
@@ -35,8 +36,9 @@ export class SignUpComponent implements OnInit {
       (data) => {
         this.router.navigate(['signIn']);
       },
-      (error) => {
-        console.log(error);
+      (httpError) => {
+        this.msgError = httpError.error.message || 'Error ao conectar';
+        console.log(httpError.error);
       }
     );
   }
