@@ -10,6 +10,7 @@
     <form
       [formGroup]="signUpForm"
       (ngSubmit)="onSubmit()"
+      #formDir="ngForm"
       class="flex flex-col justify-center items-center space-y-10 xl:space-y-15 xl:w-full mb-10 h-full"
     >
       <div class="flex flex-col justify-center items-center w-screen xl:w-full">
@@ -19,6 +20,18 @@
           formControlName="name"
           placeholder="Nome"
         />
+
+        <div
+          *ngIf="name.invalid && formDir.submitted"
+          class="flex w-3/4 border-l-4 border-red-500 mt-1"
+        >
+          <div
+            *ngIf="name.errors?.['required']"
+            class="self-start w-3/4 text-red-500 pl-2"
+          >
+            Nome é obrigatório
+          </div>
+        </div>
       </div>
       <div class="flex flex-col justify-center items-center w-screen xl:w-full">
         <input
@@ -27,21 +40,41 @@
           formControlName="email"
           placeholder="Email"
         />
+
+        <div
+          *ngIf="email.invalid && formDir.submitted"
+          class="flex w-3/4 border-l-4 border-red-500 mt-1"
+        >
+          <div
+            *ngIf="email.errors?.['required']"
+            class="self-start w-3/4 text-red-500 pl-2"
+          >
+            E-mail é obrigatório
+          </div>
+          <div
+            *ngIf="email.errors?.['email']"
+            class="self-start w-3/4 text-red-500 pl-2"
+          >
+            E-mail inválido
+          </div>
+        </div>
       </div>
       <div class="flex flex-col justify-center items-center w-screen xl:w-full">
         <input
           class="w-3/4 h-8 bg-transparent rounded-none border-b-2 border-zinc-700 focus:outline-none placeholder:font-semibold placeholder:text-zinc-600"
-          type="date"
+          type="text"
           placeholder="Data de nascimento"
           formControlName="birthDate"
+          mask="d0/M0/0000"
         />
       </div>
       <div class="flex flex-col justify-center items-center w-screen xl:w-full">
         <input
           class="w-3/4 h-8 bg-transparent rounded-none border-b-2 border-zinc-700 focus:outline-none placeholder:font-semibold placeholder:text-zinc-600"
-          type="number"
+          type="text"
           formControlName="cpf"
           placeholder="CPF"
+          mask="000.000.000-00"
         />
       </div>
       <div class="flex flex-col justify-center items-center w-screen xl:w-full">

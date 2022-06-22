@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RequestSignUp } from '../resources/models/sign-up/RequestSignUp';
 import { SignUpService } from '../resources/services/sign-up/sign-up.service';
 
@@ -10,36 +10,39 @@ import { SignUpService } from '../resources/services/sign-up/sign-up.service';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
-  public requestSignUp!: RequestSignUp;
+  public signUpForm!: FormGroup;
 
-  constructor(
-    private signUpService: SignUpService,
-    private router: Router,
-    private formBuilder: FormBuilder
-  ) {}
-  signUpForm = this.formBuilder.group({
-    name: '',
-    bithDate: '',
-    email: '',
-    cpf: '',
-    celphone: 0,
-    password: '',
-  });
+  constructor(private router: Router) {}
   msgError: string = '';
   ngOnInit(): void {
-    this.requestSignUp = new RequestSignUp();
+    this.signUpForm = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      birthDate: new FormControl(''),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      cpf: new FormControl(''),
+      cellphone: new FormControl(''),
+      password: new FormControl(''),
+    });
+  }
+
+  get name() {
+    return this.signUpForm.get('name')!;
+  }
+  get email() {
+    return this.signUpForm.get('email')!;
   }
 
   onSubmit(): void {
-    this.requestSignUp = this.signUpForm.value;
-    this.signUpService.doSignUp(this.requestSignUp).subscribe(
-      (data) => {
-        this.router.navigate(['signIn']);
-      },
-      (httpError) => {
-        this.msgError = httpError.error.message || 'Error ao conectar';
-        console.log(httpError.error);
-      }
-    );
+    if (this.signUpForm.invalid) return;
+    //  this.requestSignUp = this.signUpForm.value;
+    // this.signUpService.doSignUp(this.signUpForm).subscribe(
+    //   (data) => {
+    //     this.router.navigate(['signIn']);
+    //   },
+    //   (httpError) => {
+    //     this.msgError = httpError.error.message || 'Error ao conectar';
+    //     console.log(httpError.error);
+    //   }
+    // );
   }
 }

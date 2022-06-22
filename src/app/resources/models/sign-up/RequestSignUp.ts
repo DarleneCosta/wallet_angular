@@ -1,18 +1,18 @@
 export class RequestSignUp {
   public name: string;
-  public bithDate: string;
+  public birthDate: string;
   public email: string;
   public cpf: string;
-  public celphone: number;
+  public cellphone: number;
   public password: string;
   public sendNotification: boolean;
 
   constructor() {
     this.name = '';
-    this.bithDate = '';
+    this.birthDate = '';
     this.email = '';
     this.cpf = '';
-    this.celphone = 0;
+    this.cellphone = 0;
     this.password = '';
     this.sendNotification = false;
   }

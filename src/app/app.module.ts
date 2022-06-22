@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -38,6 +39,9 @@ import { AlertLabelComponent } from './alert-label/alert-label.component';
       { path: 'signIn', component: SignInComponent },
       { path: 'signUp', component: SignUpComponent },
     ]),
+    NgxMaskModule.forRoot({
+      dropSpecialCharacters: false,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
