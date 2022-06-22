@@ -67,6 +67,17 @@
           formControlName="birthDate"
           mask="d0/M0/0000"
         />
+        <div
+          *ngIf="birthDate.invalid && formDir.submitted"
+          class="flex w-3/4 border-l-4 border-red-500 mt-1"
+        >
+          <div
+            *ngIf="birthDate.errors?.['required']"
+            class="self-start w-3/4 text-red-500 pl-2"
+          >
+            Data de nascimento é obrigatório
+          </div>
+        </div>
       </div>
       <div class="flex flex-col justify-center items-center w-screen xl:w-full">
         <input
@@ -76,14 +87,38 @@
           placeholder="CPF"
           mask="000.000.000-00"
         />
+        <div
+          *ngIf="cpf.invalid && formDir.submitted"
+          class="flex w-3/4 border-l-4 border-red-500 mt-1"
+        >
+          <div
+            *ngIf="cpf.errors?.['required']"
+            class="self-start w-3/4 text-red-500 pl-2"
+          >
+            CPF é obrigatório
+          </div>
+        </div>
       </div>
       <div class="flex flex-col justify-center items-center w-screen xl:w-full">
         <input
           class="w-3/4 h-8 bg-transparent rounded-none border-b-2 border-zinc-700 focus:outline-none placeholder:font-semibold placeholder:text-zinc-600"
-          type="number"
+          type="text"
           formControlName="cellphone"
           placeholder="Celular"
+          mask="(00) 00000-0000"
+          prefix="+55 "
         />
+        <div
+          *ngIf="cellphone.invalid && formDir.submitted"
+          class="flex w-3/4 border-l-4 border-red-500 mt-1"
+        >
+          <div
+            *ngIf="cellphone.errors?.['required']"
+            class="self-start w-3/4 text-red-500 pl-2"
+          >
+            Celular é obrigatório
+          </div>
+        </div>
       </div>
       <div class="flex flex-col justify-center items-center w-screen xl:w-full">
         <input
@@ -92,6 +127,23 @@
           formControlName="password"
           placeholder="Senha"
         />
+        <div
+          *ngIf="password.invalid && formDir.submitted"
+          class="flex w-3/4 border-l-4 border-red-500 mt-1"
+        >
+          <div
+            *ngIf="password.errors?.['required']"
+            class="self-start w-3/4 text-red-500 pl-2"
+          >
+            Senha é obrigatória
+          </div>
+          <div
+            *ngIf="password.errors?.['min']"
+            class="self-start w-3/4 text-red-500 pl-2"
+          >
+            Senha precisa ter no mínimo 6 caracteres
+          </div>
+        </div>
       </div>
       <app-alert-label
         *ngIf="!!msgError === true"
