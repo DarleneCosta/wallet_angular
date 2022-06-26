@@ -4,8 +4,11 @@
   >
     <img class="w-full h-full" src="../../assets/login.jpg" alt="" />
   </div>
-  <div
+  <form
     id="form"
+    [formGroup]="signInForm"
+    (ngSubmit)="doLogin()"
+    #formDir="ngForm"
     class="bg-gray-200 h-screen xl:w-2/4 flex justify-center items-center content-center"
   >
     <div class="flex flex-col justify-center items-center space-y-12 w-full">
@@ -17,21 +20,43 @@
 
       <div class="flex flex-col justify-center items-center w-screen xl:w-full">
         <input
-          for="cpf"
           class="w-3/4 h-8 bg-transparent rounded-none border-b-2 border-zinc-700 focus:border-blue-700 focus:outline-none placeholder:font-semibold placeholder:text-zinc-600"
+          type="text"
+          formControlName="cpf"
           placeholder="CPF"
-          [(ngModel)]="requestSignIn.cpf"
+          mask="000.000.000-00"
         />
+        <div
+          *ngIf="cpf.invalid && formDir.submitted"
+          class="flex w-3/4 border-l-4 border-red-500 mt-1"
+        >
+          <div
+            *ngIf="cpf.errors?.['required']"
+            class="self-start w-3/4 text-red-500 pl-2"
+          >
+            CPF é obrigatório
+          </div>
+        </div>
       </div>
 
       <div class="flex flex-col justify-center items-center w-screen xl:w-full">
         <input
-          for="password"
           class="w-3/4 h-8 bg-transparent rounded-none border-b-2 border-zinc-700 focus:border-blue-700 focus:outline-none placeholder:font-semibold placeholder:text-zinc-600"
           type="password"
+          formControlName="password"
           placeholder="Senha"
-          [(ngModel)]="requestSignIn.password"
         />
+        <div
+          *ngIf="password.invalid && formDir.submitted"
+          class="flex w-3/4 border-l-4 border-red-500 mt-1"
+        >
+          <div
+            *ngIf="password.errors?.['required']"
+            class="self-start w-3/4 text-red-500 pl-2"
+          >
+            Senha é obrigatória
+          </div>
+        </div>
       </div>
       <app-alert-label
         *ngIf="!!msgError === true"
@@ -42,7 +67,7 @@
 
       <button
         class="bg-blue-500 w-3/4 rounded-lg h-12 text-white font-bold text-xl"
-        (click)="doLogin()"
+        type="submit"
       >
         Fazer Login
       </button>
@@ -57,5 +82,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </form>
 </div>

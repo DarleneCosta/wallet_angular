@@ -59,7 +59,6 @@ export class SignUpComponent implements OnInit {
   onSubmit(): void {
     if (this.signUpForm.invalid) return;
     this.requestSignUp = this.signUpForm.value;
-    console.log(this.requestSignUp);
     this.signUpService.doSignUp(this.requestSignUp).subscribe(
       (data) => {
         this.router.navigate(['signIn']);
