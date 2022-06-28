@@ -1,4 +1,4 @@
-export class RequestSignIn {
+export class RequestAuth {
   public cpf: string;
   public password: string;
 

@@ -40,8 +40,7 @@ import { AlertLabelComponent } from './views/alert-label/alert-label.component';
       { path: 'signIn', component: SignInComponent },
       { path: 'signUp', component: SignUpComponent },
       {
-        path: 'dashboard
-        ',
+        path: 'dashboard',
         loadChildren: () =>
           import('./views/dashboard/dashboard.module').then(
             (m) => m.DashboardModule

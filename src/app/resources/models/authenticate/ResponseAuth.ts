@@ -1,4 +1,4 @@
-export class ResponseSignIn {
+export class ResponseAuth {
   public token: string;
   public id: string;
   public cpf: string;
