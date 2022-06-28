@@ -5,8 +5,8 @@ import {
   UntypedFormControl,
   Validators,
 } from '@angular/forms';
-import { RequestSignUp } from '../resources/models/sign-up/RequestSignUp';
-import { SignUpService } from '../resources/services/sign-up/sign-up.service';
+import { User } from './../resources/models/user/User';
+import { UserService } from './../resources/services/user/user.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,14 +14,14 @@ import { SignUpService } from '../resources/services/sign-up/sign-up.service';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
-  public signUpForm!: UntypedFormGroup;
-  public requestSignUp!: RequestSignUp;
+  public form!: UntypedFormGroup;
+  public user!: User;
 
-  constructor(private router: Router, private signUpService: SignUpService) {}
+  constructor(private router: Router, private userService: UserService) {}
   msgError: string = '';
   ngOnInit(): void {
-    this.requestSignUp = new RequestSignUp();
-    this.signUpForm = new UntypedFormGroup({
+    this.user = new User();
+    this.form = new UntypedFormGroup({
       name: new UntypedFormControl('', [Validators.required]),
       birthDate: new UntypedFormControl('', [Validators.required]),
       email: new UntypedFormControl('', [
@@ -38,35 +38,32 @@ export class SignUpComponent implements OnInit {
   }
 
   get name() {
-    return this.signUpForm.get('name')!;
+    return this.form.get('name')!;
   }
   get birthDate() {
-    return this.signUpForm.get('birthDate')!;
+    return this.form.get('birthDate')!;
   }
   get cpf() {
-    return this.signUpForm.get('cpf')!;
+    return this.form.get('cpf')!;
   }
   get email() {
-    return this.signUpForm.get('email')!;
+    return this.form.get('email')!;
   }
   get cellphone() {
-    return this.signUpForm.get('cellphone')!;
+    return this.form.get('cellphone')!;
   }
   get password() {
-    return this.signUpForm.get('password')!;
+    return this.form.get('password')!;
   }
 
-  onSubmit(): void {
-    if (this.signUpForm.invalid) return;
-    this.requestSignUp = this.signUpForm.value;
-    this.signUpService.doSignUp(this.requestSignUp).subscribe(
-      (data) => {
-        this.router.navigate(['signIn']);
-      },
-      (httpError) => {
-        this.msgError = httpError.error.message || 'Error ao conectar';
-        console.log(httpError.error);
-      }
-    );
+  async onSubmit() {
+    if (this.form.invalid) return;
+    try {
+      this.user = this.form.value;
+      await this.userService.createUser(this.user);
+    } catch (err: any) {
+      this.msgError = err.error.message || 'Error ao conectar';
+      console.log(err.error);
+    }
   }
 }

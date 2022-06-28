@@ -5,8 +5,9 @@ import {
   UntypedFormControl,
   Validators,
 } from '@angular/forms';
+import { ResponseSignIn } from './../resources/models/sign-in/ResponseSignIn';
 import { RequestSignIn } from '../resources/models/sign-in/RequestSignIn';
-import { SignInService } from '../resources/services/sign-in/sign-in.service';
+import { SignInService } from './../resources/services/sign-in/sign-in.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,7 +15,7 @@ import { SignInService } from '../resources/services/sign-in/sign-in.service';
   styleUrls: ['./sign-in.component.css'],
 })
 export class SignInComponent implements OnInit {
-  public signInForm!: UntypedFormGroup;
+  public form!: UntypedFormGroup;
   public requestSignIn!: RequestSignIn;
 
   constructor(private signInService: SignInService, private router: Router) {}
@@ -22,31 +23,39 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     this.requestSignIn = new RequestSignIn();
-    this.signInForm = new UntypedFormGroup({
+    this.form = new UntypedFormGroup({
       cpf: new UntypedFormControl('', [Validators.required]),
       password: new UntypedFormControl('', [Validators.required]),
     });
   }
 
   get cpf() {
-    return this.signInForm.get('cpf')!;
+    return this.form.get('cpf')!;
   }
   get password() {
-    return this.signInForm.get('password')!;
+    return this.form.get('password')!;
   }
 
-  public doLogin(): void {
-    if (this.signInForm.invalid) return;
-    this.requestSignIn = this.signInForm.value;
-    this.signInService.doLogin(this.requestSignIn).subscribe(
-      (data) => {
-        this.router.navigate(['dashboard']);
-      },
-      (httpError) => {
-        this.msgError = httpError.error.message || 'Error ao conectar';
-        console.log(httpError.error);
-        this.router.navigate(['dashboard']);
-      }
-    );
+  public async doSignIn() {
+    if (this.form.invalid) return;
+    try {
+      this.requestSignIn = this.form.value;
+      await this.signInService.doSignIn(this.requestSignIn);
+    } catch (err: any) {
+      this.msgError = err.error.message || 'Error ao conectar';
+      console.log(err.error);
+    }
   }
 }
+
+//  this.requestSignIn = this.signInForm.value;
+//  this.signInService.doSignIn(this.requestSignIn).subscribe(
+//    (data: ResponseSignIn) => {
+//      this.router.navigate(['dashboard']);
+//    },
+//    (httpError: any) => {
+//      this.msgError = httpError.error.message || 'Error ao conectar';
+//      console.log(httpError.error);
+//      this.router.navigate(['dashboard']);
+//    }
+//  );

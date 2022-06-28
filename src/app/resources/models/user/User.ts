@@ -1,4 +1,4 @@
-export class StorePreference {
+export class User {
   public id: string;
   public name: string;
   public birthDate: string;
@@ -13,6 +13,7 @@ export class StorePreference {
     this.name = '';
     this.birthDate = '';
     this.cellphone = '';
+    this.email = '';
     this.cpf = '';
     this.password = '';
     this.sendNotification = false;

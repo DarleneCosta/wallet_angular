@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -43,7 +44,12 @@ import { AlertLabelComponent } from './alert-label/alert-label.component';
       dropSpecialCharacters: false,
     }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'URL_API',
+      useValue: environment.apiUrl,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
