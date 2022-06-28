@@ -5,8 +5,8 @@ import {
   UntypedFormControl,
   Validators,
 } from '@angular/forms';
-import { User } from './../resources/models/user/User';
-import { UserService } from './../resources/services/user/user.service';
+import { User } from './../../resources/models/user/User';
+import { UserService } from './../../resources/services/user/user.service';
 
 @Component({
   selector: 'app-sign-up',

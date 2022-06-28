@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Wallet } from './../resources/models/wallet/Wallet';
-import { WalletService } from './../resources/services/wallet/wallet.service';
+import { Wallet } from './../../resources/models/wallet/Wallet';
+import { WalletService } from './../../resources/services/wallet/wallet.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
