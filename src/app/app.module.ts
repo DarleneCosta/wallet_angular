@@ -3,7 +3,7 @@ import { environment } from './../environments/environment';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
@@ -17,7 +17,7 @@ import { AddPreferencesComponent } from './views/add-preferences/add-preferences
 import { TopBarComponent } from './views/top-bar/top-bar.component';
 import { StorePreferenceListComponent } from './views/store-preference-list/store-preference-list.component';
 import { AlertLabelComponent } from './views/alert-label/alert-label.component';
-
+import { InterceptorService } from './resources/services/interceptor/interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +55,11 @@ import { AlertLabelComponent } from './views/alert-label/alert-label.component';
     {
       provide: 'URL_API',
       useValue: environment.apiUrl,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],

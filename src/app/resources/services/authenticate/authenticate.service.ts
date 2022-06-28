@@ -5,6 +5,9 @@ import { RequestAuth } from './../../models/authenticate/RequestAuth';
 import { ResponseAuth } from './../../models/authenticate/ResponseAuth';
 import { ServerApiService } from './../server-api/server-api.service';
 
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthenticateService extends ServerApiService {
   constructor(
     protected _http: HttpClient,
@@ -22,7 +25,7 @@ export class AuthenticateService extends ServerApiService {
     localStorage.setItem('token', resp.token);
     localStorage.setItem('cpf', resp.cpf);
 
-    this.router.navigateByUrl('/dashboard');
+    this.router.navigate(['dashboard']);
   }
 
   isLoggedIn(): boolean {
@@ -32,6 +35,6 @@ export class AuthenticateService extends ServerApiService {
   logOut(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('cpf');
-    this.router.navigateByUrl('/login');
+    this.router.navigate(['login']);
   }
 }

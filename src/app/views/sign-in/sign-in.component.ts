@@ -5,7 +5,6 @@ import {
   UntypedFormControl,
   Validators,
 } from '@angular/forms';
-import { RequestAuth } from './../../resources/models/authenticate/RequestAuth';
 import { AuthenticateService } from './../../resources/services/authenticate/authenticate.service';
 
 @Component({
@@ -15,7 +14,6 @@ import { AuthenticateService } from './../../resources/services/authenticate/aut
 })
 export class SignInComponent implements OnInit {
   public form!: UntypedFormGroup;
-  public requestAuth!: RequestAuth;
 
   constructor(
     private authService: AuthenticateService,
@@ -24,7 +22,6 @@ export class SignInComponent implements OnInit {
   msgError: string = '';
 
   ngOnInit(): void {
-    this.requestAuth = new RequestAuth();
     this.form = new UntypedFormGroup({
       cpf: new UntypedFormControl('', [Validators.required]),
       password: new UntypedFormControl('', [Validators.required]),
@@ -38,11 +35,10 @@ export class SignInComponent implements OnInit {
     return this.form.get('password')!;
   }
 
-  public async doSignIn() {
+  public async doSignIn(): Promise<void> {
     if (this.form.invalid) return;
     try {
-      this.requestAuth = this.form.value;
-      await this.authService.doSignIn(this.requestAuth);
+      await this.authService.doSignIn(this.form.value);
     } catch (err: any) {
       this.msgError = err.error.message || 'Error ao conectar';
       console.log(err.error);

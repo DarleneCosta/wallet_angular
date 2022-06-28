@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { User } from './../../resources/models/user/User';
 import { UserService } from './../../resources/services/user/user.service';
+import { AuthenticateService } from './../../resources/services/authenticate/authenticate.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,7 +18,11 @@ export class SignUpComponent implements OnInit {
   public form!: UntypedFormGroup;
   public user!: User;
 
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthenticateService,
+    private userService: UserService
+  ) {}
   msgError: string = '';
   ngOnInit(): void {
     this.user = new User();
@@ -61,6 +66,10 @@ export class SignUpComponent implements OnInit {
     try {
       this.user = this.form.value;
       await this.userService.createUser(this.user);
+      await this.authService.doSignIn({
+        cpf: this.user.cpf,
+        password: this.user.password,
+      });
     } catch (err: any) {
       this.msgError = err.error.message || 'Error ao conectar';
       console.log(err.error);
