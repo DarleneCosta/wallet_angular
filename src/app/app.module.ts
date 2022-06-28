@@ -1,3 +1,4 @@
+import { DashboardModule } from './views/dashboard/dashboard.module';
 import { environment } from './../environments/environment';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,14 +9,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { AddPreferencesComponent } from './add-preferences/add-preferences.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { StorePreferenceListComponent } from './store-preference-list/store-preference-list.component';
-import { AlertLabelComponent } from './alert-label/alert-label.component';
+import { HomeComponent } from './views/home/home.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { SignInComponent } from './views/sign-in/sign-in.component';
+import { SignUpComponent } from './views/sign-up/sign-up.component';
+import { AddPreferencesComponent } from './views/add-preferences/add-preferences.component';
+import { TopBarComponent } from './views/top-bar/top-bar.component';
+import { StorePreferenceListComponent } from './views/store-preference-list/store-preference-list.component';
+import { AlertLabelComponent } from './views/alert-label/alert-label.component';
 
 @NgModule({
   declarations: [
@@ -36,9 +37,16 @@ import { AlertLabelComponent } from './alert-label/alert-label.component';
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
-      { path: 'dashboard', component: DashboardComponent },
       { path: 'signIn', component: SignInComponent },
       { path: 'signUp', component: SignUpComponent },
+      {
+        path: 'dashboard
+        ',
+        loadChildren: () =>
+          import('./views/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
+      },
     ]),
     NgxMaskModule.forRoot({
       dropSpecialCharacters: false,
