@@ -20,7 +20,7 @@ import { TopBarComponent } from './views/top-bar/top-bar.component';
 import { StorePreferenceListComponent } from './views/store-preference-list/store-preference-list.component';
 import { AlertLabelComponent } from './views/alert-label/alert-label.component';
 import { InterceptorService } from './resources/services/interceptor/interceptor.service';
-
+import { AuthenticateGuard } from './resources/guard/authenticate.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +45,7 @@ import { InterceptorService } from './resources/services/interceptor/interceptor
       { path: 'signUp', component: SignUpComponent },
       {
         path: 'dashboard',
+        canActivate: [AuthenticateGuard],
         loadChildren: () =>
           import('./views/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
