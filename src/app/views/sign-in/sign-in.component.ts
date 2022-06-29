@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthenticateService } from './../../resources/services/authenticate/authenticate.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,13 +14,14 @@ import { AuthenticateService } from './../../resources/services/authenticate/aut
   styleUrls: ['./sign-in.component.css'],
 })
 export class SignInComponent implements OnInit {
-  public form!: UntypedFormGroup;
+  form!: UntypedFormGroup;
+  msgError: string = '';
 
   constructor(
     private authService: AuthenticateService,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService
   ) {}
-  msgError: string = '';
 
   ngOnInit(): void {
     this.form = new UntypedFormGroup({
@@ -35,13 +37,16 @@ export class SignInComponent implements OnInit {
     return this.form.get('password')!;
   }
 
-  public async doSignIn(): Promise<void> {
+  async doSignIn(): Promise<void> {
     if (this.form.invalid) return;
+    this.spinner.show();
     try {
       await this.authService.doSignIn(this.form.value);
     } catch (err: any) {
       this.msgError = err.error.message || 'Error ao conectar';
       console.log(err.error);
+    } finally {
+      this.spinner.hide();
     }
   }
 }

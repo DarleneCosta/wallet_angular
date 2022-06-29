@@ -1,4 +1,4 @@
-<div class="h-full flex flex-col xl:flex-row-reverse">
+<div class="h-full flex flex-col xl:flex-row-reverse" bsLoadingOverlayService>
   <div
     class="hidden xl:w-2/4 xl:flex justify-center items-center content-center"
   >
@@ -71,6 +71,7 @@
       >
         Fazer Login
       </button>
+
       <div class="flex items-center justify-center">
         <div class="text-sm">
           <button
@@ -83,4 +84,6 @@
       </div>
     </div>
   </form>
+
+  <ngx-spinner size="medium" type="ball-spin"></ngx-spinner>
 </div>
