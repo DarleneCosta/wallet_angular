@@ -1,0 +1,23 @@
+<div class="flex justify-center items-center content-between w-full">
+  <p class="text-xs dark:text-white font-semibold w-full">Acumulado R$</p>
+  <div class="flex items-center content-center">
+    <div class="text-md flex items-center text-black font-extrabold mr-8 ml-8">
+      {{ getBalance() }}
+    </div>
+    <div>
+      <button class="text-sm p-1 text-gray-800 mr-4" (click)="setIsVisible()">
+        {{ balanceIsVisible }}
+        <!-- <EyeIcon  *ngIf="balanceIsVisible"
+									class="ml-1 mr-1 h-5 w-5"
+									aria-hidden="true"
+								/>
+							
+								<EyeOffIcon *ngIf="!balanceIsVisible"
+									class="ml-1 mr-1 h-5 w-5"
+									aria-hidden="true"
+								/>
+							 -->
+      </button>
+    </div>
+  </div>
+</div>

@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   public async loadWallet() {
     try {
       let idUser = '0'; //todo: onde pegar?
-      await this.walletService.getWallet(idUser);
+      this.wallet = await this.walletService.getWallet(idUser);
     } catch (err: any) {
       console.log(err.error);
     }

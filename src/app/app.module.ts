@@ -21,6 +21,7 @@ import { StorePreferenceListComponent } from './views/store-preference-list/stor
 import { AlertLabelComponent } from './views/alert-label/alert-label.component';
 import { InterceptorService } from './resources/services/interceptor/interceptor.service';
 import { AuthenticateGuard } from './resources/guard/authenticate.guard';
+import { BalanceWalletComponent } from './views/balance-wallet/balance-wallet.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { AuthenticateGuard } from './resources/guard/authenticate.guard';
     TopBarComponent,
     StorePreferenceListComponent,
     AlertLabelComponent,
+    BalanceWalletComponent,
   ],
   imports: [
     BrowserModule,
