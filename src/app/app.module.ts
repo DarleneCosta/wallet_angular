@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './views/home/home.component';
@@ -39,6 +40,7 @@ import { BalanceWalletComponent } from './views/balance-wallet/balance-wallet.co
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    FontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
