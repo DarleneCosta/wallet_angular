@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-balance-wallet',
   templateUrl: './balance-wallet.component.html',
@@ -17,7 +18,6 @@ export class BalanceWalletComponent {
 
   getBalance() {
     let balanceValue = '***';
-    debugger;
     if (this.balanceIsVisible) {
       balanceValue = this.value.toFixed(2);
     }

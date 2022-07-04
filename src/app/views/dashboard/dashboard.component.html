@@ -1,6 +1,7 @@
 <div class="bg-gray-100">
   <!-- <app-top-bar></app-top-bar> -->
   <!-- <AppBar signOut={signOut} /> -->
+  <app-top-bar></app-top-bar>
   <div class="lg:text-center bg-blue-500">
     <div class="hidden md:block">
       <hr class="mx-3" />
@@ -36,5 +37,9 @@
     </p>
   </div>
 
-  <app-store-preference-list></app-store-preference-list>
+  <app-store-preference-list
+    [storesPreference]="wallet.stores"
+    [msgError]="msgError"
+  ></app-store-preference-list>
+  <ngx-spinner size="medium" type="ball-spin"></ngx-spinner>
 </div>

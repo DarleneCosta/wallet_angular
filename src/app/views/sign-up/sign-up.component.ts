@@ -8,6 +8,7 @@ import {
 import { User } from './../../resources/models/user/User';
 import { UserService } from './../../resources/services/user/user.service';
 import { AuthenticateService } from './../../resources/services/authenticate/authenticate.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-sign-up',
@@ -21,7 +22,8 @@ export class SignUpComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthenticateService,
-    private userService: UserService
+    private userService: UserService,
+    private spinner: NgxSpinnerService
   ) {}
   msgError: string = '';
   ngOnInit(): void {
@@ -63,6 +65,7 @@ export class SignUpComponent implements OnInit {
 
   async onSubmit() {
     if (this.form.invalid) return;
+    this.spinner.show();
     try {
       this.user = this.form.value;
       await this.userService.createUser(this.user);
@@ -73,6 +76,8 @@ export class SignUpComponent implements OnInit {
     } catch (err: any) {
       this.msgError = err.error.message || 'Error ao conectar';
       console.log(err.error);
+    } finally {
+      this.spinner.hide();
     }
   }
 }

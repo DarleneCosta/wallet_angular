@@ -12,17 +12,18 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './views/home/home.component';
+import { AddPreferencesComponent } from './views/add-preferences/add-preferences.component';
+import { AlertLabelComponent } from './views/alert-label/alert-label.component';
+import { BalanceWalletComponent } from './views/balance-wallet/balance-wallet.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { HomeComponent } from './views/home/home.component';
 import { SignInComponent } from './views/sign-in/sign-in.component';
 import { SignUpComponent } from './views/sign-up/sign-up.component';
-import { AddPreferencesComponent } from './views/add-preferences/add-preferences.component';
-import { TopBarComponent } from './views/top-bar/top-bar.component';
 import { StorePreferenceListComponent } from './views/store-preference-list/store-preference-list.component';
-import { AlertLabelComponent } from './views/alert-label/alert-label.component';
-import { InterceptorService } from './resources/services/interceptor/interceptor.service';
+import { TopBarComponent } from './views/top-bar/top-bar.component';
 import { AuthenticateGuard } from './resources/guard/authenticate.guard';
-import { BalanceWalletComponent } from './views/balance-wallet/balance-wallet.component';
+import { InterceptorService } from './resources/services/interceptor/interceptor.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,9 +33,9 @@ import { BalanceWalletComponent } from './views/balance-wallet/balance-wallet.co
     SignUpComponent,
     AddPreferencesComponent,
     TopBarComponent,
-    StorePreferenceListComponent,
     AlertLabelComponent,
     BalanceWalletComponent,
+    StorePreferenceListComponent,
   ],
   imports: [
     BrowserModule,

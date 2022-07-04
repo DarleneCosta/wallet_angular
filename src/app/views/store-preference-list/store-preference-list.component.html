@@ -3,7 +3,7 @@
     <app-alert-label
       *ngIf="!storesPreference || storesPreference.length === 0"
       [title]="alert.title"
-      [subtitle]="alert.subtitle"
+      [subtitle]="msgError || alert.subtitle"
     >
     </app-alert-label>
 
