@@ -1,7 +1,7 @@
 <div class="flex items-center">
   <div class="flex-none font-semibold mr-8">Acumulado R$</div>
   <div class="flex-auto w-32 font-extrabold">{{ getBalance() }}</div>
-  <div class="flex-auto w-64">
+  <div class="flex justify-end md:w-64">
     <button class="text-sm p-1 text-gray-800 mr-4" (click)="setIsVisible()">
       <fa-icon
         *ngIf="!balanceIsVisible"
