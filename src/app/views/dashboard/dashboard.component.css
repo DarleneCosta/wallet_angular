@@ -1,0 +1,6 @@
+.fixed {
+  position: fixed;
+  bottom: 160px;
+  right: 80px;
+  box-shadow: 5px 3px 3px rgb(167, 167, 167);
+}

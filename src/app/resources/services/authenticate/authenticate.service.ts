@@ -35,6 +35,6 @@ export class AuthenticateService extends ServerApiService {
   logOut(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('cpf');
-    this.router.navigate(['login']);
+    this.router.navigate(['signIn']);
   }
 }
