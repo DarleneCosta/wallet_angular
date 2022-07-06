@@ -34,7 +34,26 @@
                 >
                   Adicionar a sua lista?
                 </h3>
-                <div class="mt-2"></div>
+                <div class="flex justify-center">
+                  <div class="mb-3 mt-1 xl:w-96">
+                    <select
+                      [(ngModel)]="selected"
+                      id="storePreference"
+                      class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    >
+                      <option value="-1">Selecione loja favorita</option>
+                      <option *ngFor="let store of stores" [value]="store.id">
+                        {{ store.name }} - {{ store.percent }}%
+                      </option>
+                    </select>
+
+                    <app-alert-label
+                      *ngIf="!stores || stores.length === 0"
+                      [title]="alert.title"
+                      [subtitle]="alert.subtitle"
+                    ></app-alert-label>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -42,6 +61,7 @@
             <button
               type="button"
               class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-600 text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 sm:ml-3 sm:w-auto sm:text-sm"
+              (click)="addStorePrefence()"
             >
               Sim
             </button>
