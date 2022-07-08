@@ -1,6 +1,10 @@
+.slide {
+  height: 100vh;
+}
+
 .fixed {
   position: fixed;
-  bottom: 140px;
-  right: 65px;
+  bottom: 150px;
+  right: 90px;
   box-shadow: 5px 3px 3px rgb(167, 167, 167);
 }
