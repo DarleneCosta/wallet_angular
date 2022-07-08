@@ -1,6 +1,4 @@
-<div class="bg-gray-100">
-  <!-- <app-top-bar></app-top-bar> -->
-  <!-- <AppBar signOut={signOut} /> -->
+<div class="bg-gray-100 slide">
   <app-top-bar></app-top-bar>
   <div class="lg:text-center bg-blue-500">
     <div class="hidden md:block">
@@ -41,6 +39,9 @@
     [storesPreference]="wallet.stores"
     [msgError]="msgError"
   ></app-store-preference-list>
-  <app-add-preferences class="fixed"></app-add-preferences>
+  <app-add-preferences
+    class="fixed"
+    (reload)="loadWallet()"
+  ></app-add-preferences>
   <ngx-spinner size="medium" type="ball-spin"></ngx-spinner>
 </div>
