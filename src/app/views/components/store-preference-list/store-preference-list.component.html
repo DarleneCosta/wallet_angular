@@ -1,4 +1,7 @@
-<div class="w-auto flex flex-col px-8 py-5 justify-center bg-gray-100">
+<div
+  class="w-auto flex flex-col px-8 py-5 justify-center bg-gray-100"
+  style="pointer-events: none"
+>
   <ul class="flex flex-col">
     <app-alert-label
       *ngIf="!storesPreference || storesPreference.length === 0"
@@ -29,12 +32,7 @@
         <div class="text-gray-600 dark:text-gray-200 text-md md:mr-20">
           {{ preference.percent }}%
         </div>
-        <div class="w-24 text-right flex justify-end">
-          <!-- <DialogRemove
-											removePreference={removePreference}
-											preference={preference}
-										/> -->
-        </div>
+        <div class="w-24 text-right flex justify-end"></div>
       </div>
     </li>
   </ul>
