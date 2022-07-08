@@ -23,7 +23,7 @@ export class AuthenticateService extends ServerApiService {
       throw new Error('Login Inválido');
     }
     localStorage.setItem('token', resp.token);
-    localStorage.setItem('cpf', resp.cpf);
+    localStorage.setItem('cpf', request.cpf);
 
     this.router.navigate(['dashboard']);
   }

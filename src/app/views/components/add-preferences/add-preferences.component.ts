@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Store } from './../../../resources/models/store/Store';
@@ -18,6 +18,7 @@ export class AddPreferencesComponent implements OnInit {
     title: 'Lojas não localizadas',
     subtitle: 'Erro ao carregar',
   };
+  @Output() reload = new EventEmitter();
   constructor(
     private storeService: StoreService,
     private spinner: NgxSpinnerService,
@@ -30,6 +31,7 @@ export class AddPreferencesComponent implements OnInit {
 
   closeDialog(): void {
     this.dialog = false;
+    this.selected = '-1';
   }
   openDialog(): void {
     this.dialog = true;
@@ -52,8 +54,8 @@ export class AddPreferencesComponent implements OnInit {
     this.spinner.show();
     try {
       await this.storeService.addStorePreference(this.selected);
+      this.reload.emit();
       this.closeDialog();
-      //avisar para recarregar a tela
     } catch (err: any) {
       this.showAlert.error(err.error.message || 'Error ao salvar');
       console.log(err.error);

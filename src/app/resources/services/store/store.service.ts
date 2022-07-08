@@ -11,6 +11,7 @@ export class StoreService extends ServerApiService {
   }
 
   addStorePreference(id: string): Promise<void> {
-    return this.post(`storePreference`, id);
+    const cpf = localStorage.getItem('cpf');
+    return this.post(`store/preference/${cpf}/${id}`, null);
   }
 }
