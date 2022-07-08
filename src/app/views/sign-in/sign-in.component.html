@@ -25,6 +25,7 @@
           formControlName="cpf"
           placeholder="CPF"
           mask="000.000.000-00"
+          [dropSpecialCharacters]="true"
         />
         <div
           *ngIf="cpf.invalid && formDir.submitted"

@@ -86,6 +86,7 @@
           formControlName="cpf"
           placeholder="CPF"
           mask="000.000.000-00"
+          [dropSpecialCharacters]="true"
         />
         <div
           *ngIf="cpf.invalid && formDir.submitted"
@@ -107,6 +108,7 @@
           placeholder="Celular"
           mask="(00) 00000-0000"
           prefix="+55 "
+          [dropSpecialCharacters]="true"
         />
         <div
           *ngIf="cellphone.invalid && formDir.submitted"
