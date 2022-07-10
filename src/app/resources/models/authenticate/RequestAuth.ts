@@ -1,9 +1,9 @@
 export class RequestAuth {
-  public cpf: string;
+  public username: string;
   public password: string;
 
   constructor() {
-    this.cpf = '';
+    this.username = '';
     this.password = '';
   }
 }

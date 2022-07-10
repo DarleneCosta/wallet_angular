@@ -70,7 +70,7 @@ export class SignUpComponent implements OnInit {
       this.user = this.form.value;
       await this.userService.createUser(this.user);
       await this.authService.doSignIn({
-        cpf: this.user.cpf,
+        username: this.user.cpf,
         password: this.user.password,
       });
     } catch (err: any) {

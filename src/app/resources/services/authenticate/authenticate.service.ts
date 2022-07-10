@@ -18,12 +18,13 @@ export class AuthenticateService extends ServerApiService {
   }
 
   async doSignIn(request: RequestAuth): Promise<void> {
-    const resp: ResponseAuth = await this.post('login', request);
+    const resp: ResponseAuth = await this.post('user/authenticate', request);
     if (!resp.token) {
       throw new Error('Login Inválido');
     }
+    debugger;
     localStorage.setItem('token', resp.token);
-    localStorage.setItem('cpf', request.cpf);
+    localStorage.setItem('cpf', request.username);
 
     this.router.navigate(['dashboard']);
   }
