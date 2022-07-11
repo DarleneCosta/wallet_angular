@@ -1,6 +1,4 @@
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { RequestAuth } from './../../models/authenticate/RequestAuth';
 import { ResponseAuth } from './../../models/authenticate/ResponseAuth';
 import { ServerApiService } from './../server-api/server-api.service';
@@ -9,33 +7,25 @@ import { ServerApiService } from './../server-api/server-api.service';
   providedIn: 'root',
 })
 export class AuthenticateService extends ServerApiService {
-  constructor(
-    protected _http: HttpClient,
-    @Inject('URL_API') private _urlAPI: string,
-    private router: Router
-  ) {
-    super(_http, _urlAPI);
-  }
-
   async doSignIn(request: RequestAuth): Promise<void> {
-    const resp: ResponseAuth = await this.post('user/authenticate', request);
+    const resp: ResponseAuth = await this.post(
+      'user/authenticate',
+      'user',
+      request
+    );
     if (!resp.token) {
       throw new Error('Login Inválido');
     }
-    debugger;
     localStorage.setItem('token', resp.token);
     localStorage.setItem('cpf', request.username);
-
-    this.router.navigate(['dashboard']);
   }
 
-  isLoggedIn(): boolean {
+  isAuthenticated(): boolean {
     return localStorage.getItem('token') !== null;
   }
 
   logOut(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('cpf');
-    this.router.navigate(['signIn']);
   }
 }

@@ -53,7 +53,10 @@ export class AddPreferencesComponent implements OnInit {
     if (this.selected == '-1') return;
     this.spinner.show();
     try {
-      await this.storeService.addStorePreference(this.selected);
+      const storeSelected: any = this.stores.find(
+        (s: Store) => s.id === this.selected
+      );
+      await this.storeService.addStorePreference(storeSelected);
       this.reload.emit();
       this.closeDialog();
     } catch (err: any) {

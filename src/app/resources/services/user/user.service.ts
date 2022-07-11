@@ -6,7 +6,8 @@ import { User } from './../../models/user/User';
   providedIn: 'root',
 })
 export class UserService extends ServerApiService {
+  tipo: string = 'user';
   createUser(user: User): Promise<void> {
-    return this.post(`user`, user);
+    return this.post(`user`, this.tipo, user);
   }
 }

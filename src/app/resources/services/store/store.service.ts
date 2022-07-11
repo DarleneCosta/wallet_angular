@@ -6,12 +6,12 @@ import { Store } from './../../models/store/Store';
   providedIn: 'root',
 })
 export class StoreService extends ServerApiService {
+  tipo: string = 'store';
   getStores(): Promise<Store[]> {
-    return this.get(`store`);
+    return this.get(`store`, this.tipo);
   }
 
-  addStorePreference(id: string): Promise<void> {
-    const cpf = localStorage.getItem('cpf');
-    return this.post(`store/preference/${cpf}/${id}`, null);
+  addStorePreference(store: Store): Promise<void> {
+    return this.put(`store/preference`, this.tipo, store);
   }
 }

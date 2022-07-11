@@ -9,6 +9,7 @@ import { User } from './../../resources/models/user/User';
 import { UserService } from './../../resources/services/user/user.service';
 import { AuthenticateService } from './../../resources/services/authenticate/authenticate.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-sign-up',
@@ -68,6 +69,7 @@ export class SignUpComponent implements OnInit {
     this.spinner.show();
     try {
       this.user = this.form.value;
+      this.user.birthDate = moment(this.user.birthDate).format('YYYY-MM-DD');
       await this.userService.createUser(this.user);
       await this.authService.doSignIn({
         username: this.user.cpf,

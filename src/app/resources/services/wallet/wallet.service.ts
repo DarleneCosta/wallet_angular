@@ -6,7 +6,8 @@ import { Wallet } from './../../models/wallet/Wallet';
   providedIn: 'root',
 })
 export class WalletService extends ServerApiService {
+  tipo: string = 'wallet';
   getWallet(cpf: string): Promise<Wallet> {
-    return this.get(`wallet/${cpf}`);
+    return this.get(`wallet/${cpf}`, this.tipo);
   }
 }

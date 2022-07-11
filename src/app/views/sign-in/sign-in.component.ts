@@ -42,6 +42,9 @@ export class SignInComponent implements OnInit {
     this.spinner.show();
     try {
       await this.authService.doSignIn(this.form.value);
+      if (this.authService.isAuthenticated()) {
+        this.router.navigate(['dashboard']);
+      }
     } catch (err: any) {
       this.msgError = err.error.message || 'Error ao conectar';
       console.log(err.error);

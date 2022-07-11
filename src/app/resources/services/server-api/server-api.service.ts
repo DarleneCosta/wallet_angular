@@ -7,28 +7,45 @@ import { Inject, Injectable } from '@angular/core';
 export class ServerApiService {
   constructor(
     protected http: HttpClient,
-    @Inject('URL_API') private urlApi: string
+    @Inject('API_URL_USER') private apiUrlUser: string,
+    @Inject('API_URL_WALLET') private apiUrlWallet: string,
+    @Inject('API_URL_STORE') private apiUrlStore: string
   ) {}
 
-  public post(url: string, body: any): Promise<any> {
+  public post(url: string, tipo: string, body: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.post(this.obterUrl(url), body).subscribe({
+      this.http.post(this.obterUrl(url, tipo), body).subscribe({
         next: (v) => resolve(v),
         error: (e) => reject(e),
       });
     });
   }
 
-  public get(url: string): Promise<any> {
+  public put(url: string, tipo: string, body: any): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.get(this.obterUrl(url)).subscribe({
+      this.http.put(this.obterUrl(url, tipo), body).subscribe({
         next: (v) => resolve(v),
         error: (e) => reject(e),
       });
     });
   }
 
-  private obterUrl(url: string): string {
-    return `${this.urlApi}/${url}`;
+  public get(url: string, tipo: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.obterUrl(url, tipo)).subscribe({
+        next: (v) => resolve(v),
+        error: (e) => reject(e),
+      });
+    });
+  }
+
+  private obterUrl(url: string, tipo: string): string {
+    if (tipo === 'user') {
+      return `${this.apiUrlUser}/${url}`;
+    } else if (tipo === 'wallet') {
+      return `${this.apiUrlWallet}/${url}`;
+    } else {
+      return `${this.apiUrlStore}/${url}`;
+    }
   }
 }

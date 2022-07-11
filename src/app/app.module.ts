@@ -64,8 +64,16 @@ import { InterceptorService } from './resources/services/interceptor/interceptor
   ],
   providers: [
     {
-      provide: 'URL_API',
-      useValue: environment.apiUrl,
+      provide: 'API_URL_USER',
+      useValue: environment.apiUrlUser,
+    },
+    {
+      provide: 'API_URL_WALLET',
+      useValue: environment.apiUrlWallet,
+    },
+    {
+      provide: 'API_URL_STORE',
+      useValue: environment.apiUrlStore,
     },
     {
       provide: HTTP_INTERCEPTORS,
