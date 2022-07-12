@@ -10,6 +10,7 @@ import { UserService } from './../../resources/services/user/user.service';
 import { AuthenticateService } from './../../resources/services/authenticate/authenticate.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import * as moment from 'moment';
+import { AlertService } from './../../resources/services/alert/alert.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -24,7 +25,8 @@ export class SignUpComponent implements OnInit {
     private router: Router,
     private authService: AuthenticateService,
     private userService: UserService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private showAlert: AlertService
   ) {}
   msgError: string = '';
   ngOnInit(): void {
@@ -68,16 +70,23 @@ export class SignUpComponent implements OnInit {
     if (this.form.invalid) return;
     this.spinner.show();
     try {
+      const birthDate = moment(this.form.value.birthDate);
+      if (!birthDate.isValid()) {
+        this.showAlert.error('Data de nascimento não é válida.');
+        return;
+      }
       this.user = this.form.value;
-      this.user.birthDate = moment(this.user.birthDate).format('YYYY-MM-DD');
+      this.user.birthDate = birthDate.format('DD-MM-YYYY');
+      this.user.cellphone = parseInt(this.form.value.cellphone);
+      this.user.sendNotification = false;
       await this.userService.createUser(this.user);
       await this.authService.doSignIn({
         username: this.user.cpf,
         password: this.user.password,
       });
     } catch (err: any) {
-      this.msgError = err.error.message || 'Error ao conectar';
-      console.log(err.error);
+      this.msgError = (err.error && err.error.message) || 'Error ao conectar';
+      console.log(err);
     } finally {
       this.spinner.hide();
     }

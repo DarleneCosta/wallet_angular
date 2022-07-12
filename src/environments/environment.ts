@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
   // apiUrl: 'http://localhost:3000',
-  apiUrlUser: 'http://35.190.162.13',
-  apiUrlWallet: 'http://34.148.135.178',
-  apiUrlStore: 'http://34.139.82.255',
+  apiUrlUser: 'http://34.94.7.84',
+  apiUrlWallet: 'http://34.102.48.139',
+  apiUrlStore: 'http://34.94.106.155',
 };
 
 /*
