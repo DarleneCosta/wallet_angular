@@ -3,7 +3,7 @@ export class User {
   public name: string;
   public birthDate: string;
   public email: string;
-  public cellphone: string;
+  public cellphone: number;
   public cpf: string;
   public password: string;
   public sendNotification: boolean;
@@ -12,7 +12,7 @@ export class User {
     this.id = '';
     this.name = '';
     this.birthDate = '';
-    this.cellphone = '';
+    this.cellphone = 0;
     this.email = '';
     this.cpf = '';
     this.password = '';
