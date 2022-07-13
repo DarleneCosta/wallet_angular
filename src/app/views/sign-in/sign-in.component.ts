@@ -25,13 +25,13 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new UntypedFormGroup({
-      cpf: new UntypedFormControl('', [Validators.required]),
+      username: new UntypedFormControl('', [Validators.required]),
       password: new UntypedFormControl('', [Validators.required]),
     });
   }
 
-  get cpf() {
-    return this.form.get('cpf')!;
+  get username() {
+    return this.form.get('username')!;
   }
   get password() {
     return this.form.get('password')!;
