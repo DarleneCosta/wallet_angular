@@ -7,7 +7,8 @@ import { Wallet } from './../../models/wallet/Wallet';
 })
 export class WalletService extends ServerApiService {
   tipo: string = 'wallet';
-  getWallet(cpf: string): Promise<Wallet> {
+  getWallet(): Promise<Wallet> {
+    const cpf = localStorage.getItem('cpf');
     return this.get(`wallet/${cpf}`, this.tipo);
   }
 }

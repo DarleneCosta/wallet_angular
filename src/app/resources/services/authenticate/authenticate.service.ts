@@ -13,19 +13,19 @@ export class AuthenticateService extends ServerApiService {
       'user',
       request
     );
-    if (!resp.token) {
+    if (!resp.access_token) {
       throw new Error('Login Inválido');
     }
-    localStorage.setItem('token', resp.token);
+    localStorage.setItem('access_token', resp.access_token);
     localStorage.setItem('cpf', request.username);
   }
 
   isAuthenticated(): boolean {
-    return localStorage.getItem('token') !== null;
+    return localStorage.getItem('access_token') !== null;
   }
 
   logOut(): void {
-    localStorage.removeItem('token');
+    localStorage.removeItem('access_token');
     localStorage.removeItem('cpf');
   }
 }

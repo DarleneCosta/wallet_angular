@@ -23,8 +23,7 @@ export class DashboardComponent implements OnInit {
   public async loadWallet() {
     this.spinner.show();
     try {
-      let idUser = '0'; //todo: onde pegar?
-      this.wallet = await this.walletService.getWallet(idUser);
+      this.wallet = await this.walletService.getWallet();
     } catch (err: any) {
       this.msgError = err.error.message || 'Error ao carregar';
       console.log(err.error);

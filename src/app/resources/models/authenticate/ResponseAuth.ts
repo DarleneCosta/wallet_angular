@@ -1,7 +1,7 @@
 export class ResponseAuth {
-  public token: string;
+  public access_token: string;
 
   constructor() {
-    this.token = '';
+    this.access_token = '';
   }
 }
