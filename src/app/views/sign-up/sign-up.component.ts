@@ -70,7 +70,7 @@ export class SignUpComponent implements OnInit {
     if (this.form.invalid) return;
     this.spinner.show();
     try {
-      const birthDate = moment(this.form.value.birthDate);
+      const birthDate = moment(this.form.value.birthDate, 'DD/MM/YYYY');
       if (!birthDate.isValid()) {
         this.showAlert.error('Data de nascimento não é válida.');
         return;
