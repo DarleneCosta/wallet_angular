@@ -49,7 +49,7 @@ import { InterceptorService } from './resources/services/interceptor/interceptor
       { path: 'signIn', component: SignInComponent },
       { path: 'signUp', component: SignUpComponent },
       {
-        path: 'dashboard',
+        path: '',
         canActivate: [AuthenticateGuard],
         loadChildren: () =>
           import('./views/dashboard/dashboard.module').then(
