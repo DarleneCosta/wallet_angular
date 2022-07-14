@@ -5,7 +5,7 @@
       <hr class="mx-3" />
       <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <div class="text-sm font-medium text-white bg-blue-500 py-2">
-          Olá, Fulano
+          Olá,
           {{ wallet && wallet.name }}
         </div>
         <div
@@ -40,6 +40,7 @@
     [msgError]="msgError"
   ></app-store-preference-list>
   <app-add-preferences
+    [wallet]="wallet"
     class="fixed"
     (reload)="loadWallet()"
   ></app-add-preferences>
