@@ -12,6 +12,7 @@ export class StoreService extends ServerApiService {
   }
 
   addStorePreference(store: Store): Promise<void> {
-    return this.put(`store/preference`, this.tipo, store);
+    const cpf = localStorage.getItem('cpf');
+    return this.put(`store/cpf/${cpf}`, this.tipo, store);
   }
 }

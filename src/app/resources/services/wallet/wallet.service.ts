@@ -9,6 +9,6 @@ export class WalletService extends ServerApiService {
   tipo: string = 'wallet';
   getWallet(): Promise<Wallet> {
     const cpf = localStorage.getItem('cpf');
-    return this.get(`wallet/${cpf}`, this.tipo);
+    return this.get(`wallet/cpf/${cpf}`, this.tipo);
   }
 }
