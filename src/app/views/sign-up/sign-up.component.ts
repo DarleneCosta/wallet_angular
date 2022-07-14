@@ -18,8 +18,9 @@ import { AlertService } from './../../resources/services/alert/alert.service';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
-  public form!: UntypedFormGroup;
-  public user!: User;
+  form!: UntypedFormGroup;
+  user!: User;
+  msgError: string = '';
 
   constructor(
     private router: Router,
@@ -28,7 +29,7 @@ export class SignUpComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private showAlert: AlertService
   ) {}
-  msgError: string = '';
+
   ngOnInit(): void {
     this.user = new User();
     this.form = new UntypedFormGroup({
@@ -79,16 +80,25 @@ export class SignUpComponent implements OnInit {
       this.user.birthDate = birthDate.format('DD-MM-YYYY');
       this.user.cellphone = parseInt(this.form.value.cellphone);
       this.user.sendNotification = false;
+
+      this.authService.logOut();
+
       await this.userService.createUser(this.user);
-      await this.authService.doSignIn({
-        username: this.user.cpf,
-        password: this.user.password,
-      });
+      await this.autenticate();
     } catch (err: any) {
-      this.msgError = (err.error && err.error.message) || 'Error ao conectar';
-      console.log(err);
+      this.msgError = err.message || 'Error ao conectar';
     } finally {
       this.spinner.hide();
+    }
+  }
+
+  private async autenticate() {
+    await this.authService.doSignIn({
+      username: this.user.cpf,
+      password: this.user.password,
+    });
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['dashboard']);
     }
   }
 }

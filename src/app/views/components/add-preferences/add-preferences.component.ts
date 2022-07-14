@@ -14,10 +14,7 @@ export class AddPreferencesComponent implements OnInit {
   dialog: boolean = false;
   stores: Array<Store> = [];
   selected: string = '-1';
-  alert = {
-    title: 'Lojas não localizadas',
-    subtitle: 'Erro ao carregar',
-  };
+
   @Output() reload = new EventEmitter();
   constructor(
     private storeService: StoreService,
@@ -42,8 +39,7 @@ export class AddPreferencesComponent implements OnInit {
     try {
       this.stores = await this.storeService.getStores();
     } catch (err: any) {
-      this.alert.subtitle = err.error.message || 'Error ao carregar';
-      console.log(err.error);
+      this.showAlert.error(err.message || 'Error ao carregar');
     } finally {
       this.spinner.hide();
     }
@@ -60,8 +56,7 @@ export class AddPreferencesComponent implements OnInit {
       this.reload.emit();
       this.closeDialog();
     } catch (err: any) {
-      this.showAlert.error(err.error.message || 'Error ao salvar');
-      console.log(err.error);
+      this.showAlert.error(err.message || 'Error ao salvar');
     } finally {
       this.spinner.hide();
     }

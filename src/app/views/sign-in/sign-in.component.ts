@@ -40,14 +40,15 @@ export class SignInComponent implements OnInit {
   async doSignIn(): Promise<void> {
     if (this.form.invalid) return;
     this.spinner.show();
+
     try {
+      this.authService.logOut();
       await this.authService.doSignIn(this.form.value);
       if (this.authService.isAuthenticated()) {
         this.router.navigate(['dashboard']);
       }
     } catch (err: any) {
-      this.msgError = err.error.message || 'Error ao conectar';
-      console.log(err.error);
+      this.msgError = err.message || 'Error ao conectar';
     } finally {
       this.spinner.hide();
     }
