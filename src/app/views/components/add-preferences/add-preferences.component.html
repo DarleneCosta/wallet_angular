@@ -46,12 +46,6 @@
                         {{ store.name }} - {{ store.percent }}%
                       </option>
                     </select>
-
-                    <app-alert-label
-                      *ngIf="!stores || stores.length === 0"
-                      [title]="alert.title"
-                      [subtitle]="alert.subtitle"
-                    ></app-alert-label>
                   </div>
                 </div>
               </div>
