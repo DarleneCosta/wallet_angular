@@ -5,7 +5,7 @@ export class Wallet {
   public cpf: string;
   public name: string;
   public balance: string;
-  public stores: Array<Store[]>;
+  public stores: Array<Store>;
 
   constructor() {
     this.id = '';

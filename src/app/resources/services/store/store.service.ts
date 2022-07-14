@@ -10,9 +10,4 @@ export class StoreService extends ServerApiService {
   getStores(): Promise<Store[]> {
     return this.get(`store`, this.tipo);
   }
-
-  addStorePreference(store: Store): Promise<void> {
-    const cpf = localStorage.getItem('cpf');
-    return this.put(`store/cpf/${cpf}`, this.tipo, store);
-  }
 }

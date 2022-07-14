@@ -1,9 +1,12 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Store } from './../../../resources/models/store/Store';
 import { StoreService } from './../../../resources/services/store/store.service';
 import { AlertService } from './../../../resources/services/alert/alert.service';
+import { WalletService } from './../../../resources/services/wallet/wallet.service';
+import { Wallet } from './../../../resources/models/wallet/Wallet';
+
 @Component({
   selector: 'app-add-preferences',
   templateUrl: './add-preferences.component.html',
@@ -14,10 +17,11 @@ export class AddPreferencesComponent implements OnInit {
   dialog: boolean = false;
   stores: Array<Store> = [];
   selected: string = '-1';
-
+  @Input() wallet!: Wallet;
   @Output() reload = new EventEmitter();
   constructor(
     private storeService: StoreService,
+    private walletService: WalletService,
     private spinner: NgxSpinnerService,
     private showAlert: AlertService
   ) {}
@@ -52,7 +56,7 @@ export class AddPreferencesComponent implements OnInit {
       const storeSelected: any = this.stores.find(
         (s: Store) => s.id === this.selected
       );
-      await this.storeService.addStorePreference(storeSelected);
+      await this.walletService.addStoreInWallet(storeSelected, this.wallet);
       this.reload.emit();
       this.closeDialog();
     } catch (err: any) {
