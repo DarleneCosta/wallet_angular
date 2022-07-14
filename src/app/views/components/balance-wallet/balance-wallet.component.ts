@@ -10,7 +10,7 @@ export class BalanceWalletComponent {
   faEye = faEye;
   faEyeSlash = faEyeSlash;
   balanceIsVisible: boolean = false;
-  @Input() value: number = 0;
+  @Input() value: string = '';
 
   setIsVisible() {
     this.balanceIsVisible = !this.balanceIsVisible;
@@ -19,7 +19,7 @@ export class BalanceWalletComponent {
   getBalance() {
     let balanceValue = '***';
     if (this.balanceIsVisible) {
-      balanceValue = this.value.toFixed(2);
+      balanceValue = parseFloat(this.value).toFixed(2);
     }
     return balanceValue;
   }
